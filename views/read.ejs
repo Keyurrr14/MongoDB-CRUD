@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>MonogoDB App</title>
+</head>
+<body>
+    <div class="w-full min-h-screen bg-zinc-900 p-10 text-white">
+        <div class="mb-5">
+            <a class="text-blue-500" href="/">Back to Home</a>
+        </div>
+
+        <h1 class="text-white text-3xl mb-5 font-bold tracking-tighter">View Users</h1>
+        <div class="users flex flex-wrap gap-3">
+            <% if (users.length > 0){ %>
+                <% users.forEach((val) => { %>
+                    <div class="user w-72 p-4 bg-zinc-800 rounded-lg">
+                        <div class="w-full h-52 bg-zinc-500 rounded-lg overflow-hidden">
+                            <img class="w-full h-full object-cover" src="<%= val.image %>" alt="">
+                        </div>
+                        <h1 class="text-2xl mt-3 tracking-tighter font-medium"><%= val.name %></h1>
+                        <h2 class="text-zinc-400 text-sm"><%= val.email %></h2>
+                        <div class="flex justify-between mt-5 ">
+                            <a class="text-blue-500" href="/edit">Edit User</a>
+                            <a class="text-red-500" href="/delete/<%= val._id %>">Delete User</a>
+                        </div>
+                    </div>
+                <% })%>
+
+            <% } else { %>
+               <h1 class="text-white text-xl">No Users Yet</h1> 
+            <% }%>
+        </div>
+    </div>
+</body>
+</html>
